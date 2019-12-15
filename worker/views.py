@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from .models import Task
 from django.http import JsonResponse
 import subprocess
-from . import settings_local as SETTINGS
 
 def log(request):
     if request.method == 'POST':
