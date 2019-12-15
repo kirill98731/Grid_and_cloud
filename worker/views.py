@@ -49,9 +49,6 @@ def add(request) :
     task.save()
     tasks_count = len(Task.objects.filter(status=False))
     if tasks_count >= 2:
-        subprocess.run(f'az login -u {SETTINGS.username} -p {SETTINGS.password}', shell=True)
-        subprocess.run("az vm start --resource-group MyResourceGroup_1 --name MyVm_1",shell=True)
-        subprocess.run("ssh azureuser@13.92.158.174 python main.py", shell=True)
-        subprocess.run("az vm stop --resource-group MyResourceGroup_1 --name MyVm_1", shell=True)
+        subprocess.Popen("bash script.sh", shell=True)
     return redirect('/')
 
