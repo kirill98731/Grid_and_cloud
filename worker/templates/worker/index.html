@@ -42,7 +42,7 @@
       <th scope="row">
         <table class="table">
             <thead>
-                <th>Название</th>
+                <th>Данные</th>
                 <th>Тип</th>
                 <th>Статус</th>
                 <th>Ответ</th>
@@ -50,8 +50,8 @@
 
                 {% for task in tasks %}
                      <tr>
-                        <th scope="row">{{ task.name }}</th>
-                        <td>{{ task.type }}</td>
+                        <th scope="row">{{ task.input_data }}</th>
+                        <td> {{ task.type }} </td>
                         <td>
                             {% if task.status  %}
                             Решена
@@ -68,16 +68,12 @@
           <form action="/add/" method="post" class="send">
             {% csrf_token %}
             <div class="form-group">
-                <label>Название задачи</label>
-                <input type="text" class="form-control" name="name" required>
-            </div>
-                <div class="form-group">
                 <label>Тип задачи</label>
                 <input type="text" class="form-control" name="type" required>
             </div>
             <div class="form-group">
                 <label>Входные данные</label>
-                <input type="text" class="form-control"  name="input_data" required>
+                <input type="text" class="form-control"  name="input_data" required style="height = 100px">
             </div>
 
             <button type="submit" class="btn btn-primary">Отправить</button>

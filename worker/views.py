@@ -44,7 +44,7 @@ def out(request):
     return redirect('/')
 
 def add(request) :
-    task = Task(name=request.POST['name'], type=request.POST['type'], input_data=request.POST['input_data'], status=False, user=request.user)
+    task = Task(type=request.POST['type'], input_data=request.POST['input_data'], status=False, user=request.user)
     task.save()
     tasks_count = len(Task.objects.filter(status=False))
     if tasks_count >= 5:
