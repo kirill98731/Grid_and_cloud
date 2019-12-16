@@ -5,16 +5,40 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
+<style>
+
+    body {
+        background: #CCCCFF;
+    }
+    .send{
+        margin-left: 40%;
+        margin-right: 40%;
+        margin-top: 10%;
+    }
+
+</style>
+
 <body>
 
-<h1>Зарегистрируйтесь</h1>
-<a href="/login/">Войдите</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/sign/">Зарегистрируйтесь</a>
 
-<form action="/sign/" method="post" style="padding: 20%">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/login/">Войдите<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<form action="/sign/" method="post" class="send">
     <p style="color: red">{{ message }}</p>
     {% csrf_token %}
   <div class="form-group">
-      <h3>Заполните все поля для входа в систему</h3>
+      <h3>Заполните все поля для регистрации</h3>
     <label for="exampleInputEmail1">Адрес электронной почты</label>
     <input type="text" class="form-control" id="exampleInputEmail1" name="user" aria-describedby="emailHelp" placeholder="example@mail.ru" required>
   </div>

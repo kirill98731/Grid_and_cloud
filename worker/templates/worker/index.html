@@ -1,36 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+
+    body {
+        background: #CCCCFF;
+    }
+
+    .send{
+        width: 50%
+    }
+
+    .no_task{
+        text-align: center;
+        margin: 5%;
+    }
+</style>
 <body>
-<h1>Главная</h1>
-<a href="/logout/">Выйти</a>
 
-{% for task in tasks %}
-    <p> {{ task.name }}, {{ task.type }} - {{ task.status }} </p>
-{% endfor %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="">Главная</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/logout/">Выйти<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 
 
-<form action="/add/" method="post" style="padding: 20%">
-    {% csrf_token %}
-    <div class="form-group">
-        <label>Название задачи</label>
-        <input type="text" class="form-control" name="name" required>
-    </div>
-        <div class="form-group">
-        <label>Тип задачи</label>
-        <input type="text" class="form-control" name="type" required>
-    </div>
-    <div class="form-group">
-        <label>Входные данные</label>
-        <input type="text" class="form-control"  name="input_data" required>
-    </div>
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">
+        <table class="table">
+            <thead>
+                <th>Название</th>
+                <th>Тип</th>
+                <th>Статус</th>
+                <th>Ответ</th>
+            </thead>
 
-  <button type="submit" class="btn btn-primary">Отправить</button>
-</form>
+                {% for task in tasks %}
+                     <tr>
+                        <th scope="row">{{ task.name }}</th>
+                        <td>{{ task.type }}</td>
+                        <td>
+                            {% if task.status  %}
+                            Решена
+                            {% else %}
+                            Не решена
+                            {% endif %}
+                        </td>
+                        <td>{{ task.answer }}</td>
+                     </tr>
+                {% endfor %}
+        </table>
+      </th>
+      <td>
+          <form action="/add/" method="post" class="send">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Название задачи</label>
+                <input type="text" class="form-control" name="name" required>
+            </div>
+                <div class="form-group">
+                <label>Тип задачи</label>
+                <input type="text" class="form-control" name="type" required>
+            </div>
+            <div class="form-group">
+                <label>Входные данные</label>
+                <input type="text" class="form-control"  name="input_data" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Отправить</button>
+          </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
 
 </body>
 </html>
